@@ -1,0 +1,31 @@
+{
+  "name": "excel",
+  "version": "1.0.0",
+  "description": "Pure JavaScript Excel application",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack",
+    "build": "webpack --mode productionnmo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudebovds/js-excel.git"
+  },
+  "keywords": [
+    "js",
+    "javascript",
+    "excel"
+  ],
+  "author": "Mit Sudebov <sudebovds@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sudebovds/js-excel/issues"
+  },
+  "homepage": "https://github.com/sudebovds/js-excel#readme",
+  "private": true,
+  "devDependencies": {
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
