@@ -1,0 +1,23 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "es6": true,
+        "browser": true,
+        "node": true
+    },
+    "rules": {
+        "arrow-parens": "off",
+        "linebreak-style":"off",
+        "space-before-blocks":"off",
+        "indent":"off",
+        "eol-last":"off",
+        "no-console":"off",
+        "no-confusing-arrow":"off",
+        "no-trailing-spaces":"off",
+        "comma-dangle":"off"
+    },
+    "extends": [
+        "airbnb",
+        "airbnb/hooks"
+    ]
+}

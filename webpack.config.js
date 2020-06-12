@@ -10,6 +10,25 @@ const isDev = !isProd;
 
 const filename = ext => isDev ? `bundle.${ext}` : `bundle.[hash].${ext}`;
 
+const jsLoader = () => {
+    const loaders = [
+        {
+            loader: 'babel-loader',
+            options: {
+                presets: [
+                    '@babel/preset-env'
+                ]
+            }            
+        }
+    ];
+
+    if (isDev){
+        loaders.push('eslint-loader');
+    }
+
+    return loaders;
+};
+
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     mode: 'development',
@@ -42,7 +61,7 @@ module.exports = {
             }
         }),
         new CopyPlugin({
-            patterns:[
+            patterns: [
                 {
                     from: path.resolve(__dirname, 'src/favicon.png'), 
                     to: path.resolve(__dirname, 'dist')
@@ -72,15 +91,8 @@ module.exports = {
             { 
                 test: /\.js$/, 
                 exclude: /node_modules/, 
-                loader: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            '@babel/preset-env'
-                        ]
-                    }
-                }
+                loader: jsLoader()
             }
         ]
     }
-}
+};
