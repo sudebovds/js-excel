@@ -54,6 +54,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.10.1"
+    "@babel/polyfill": "^7.10.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "normalize.scss": "^0.1.0"
   }
 }
