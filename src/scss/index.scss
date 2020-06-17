@@ -6,6 +6,7 @@
 @import "modules/toolbar";
 @import "modules/formula";
 @import "modules/table";
+@import "modules/dashboard";
 
 /*COMMON SECTION*/
 
@@ -19,6 +20,11 @@ body{
     font-family: 'Roboto', sans-serif;
 
     font-size: 12px;
+}
+ul, li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .dfl{
@@ -35,4 +41,9 @@ body{
     position: relative;
 
     color: $main-color;
+
+    height: 100%;
+    max-width: 100%;
+
+    font-size: .8rem;
 }
