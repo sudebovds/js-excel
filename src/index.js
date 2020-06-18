@@ -1,7 +1,12 @@
-/* eslint-disable no-console */
-/* eslint-disable import/extensions */
-
-import './module.js';
+import { Header } from '@/components/header/Header';
+import { Toolbar } from '@/components/toolbar/Toolbar';
+import { Formula } from '@/components/formula/Formula';
+import { Excel } from '@/components/excel/Excel';
+import { Table } from '@/components/table/Table';
 import './scss/index.scss';
 
-console.log('This shit is working!');
+const excel = new Excel('#app', {
+    components: [Header, Toolbar, Formula, Table]
+});
+
+excel.render();
