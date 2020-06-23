@@ -28,11 +28,22 @@ export class DomListener{
                 throw new Error(`Method ${method} is not implemented in ${curName} Component!`);
             }
 
-            // This same that the addEventListener, but realised in our Dom library
+            /* Don't forget, mortal, bind always return NEW function. 
+            Live with that. Die with that. */
 
-            this.$root.on(listener, this[method].bind(this));
+            this[method] = this[method].bind(this);
+
+            // Same that the addEventListener, but realised in our Dom library
+
+            this.$root.on(listener, this[method]);
         });
     }
 
-    removeDOMListeners(){}
+    removeDOMListeners(){
+        this.listeners.forEach(listener => {
+            const method = getMethodName(listener);
+
+            this.$root.off(listener, this[method]);
+        });
+    }
 }
