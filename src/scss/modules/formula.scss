@@ -2,6 +2,8 @@
 @import "../variables";
 
 .excel__formula{
+    display: flex;
+
     height: $formula-height;
 
     text-align: center;

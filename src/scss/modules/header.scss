@@ -4,6 +4,9 @@
 .excel__header{
     height: $header-height;
 
+    display: flex;
+    justify-content: space-between;
+
     padding: 8px 4px 4px 0;
 
     & .excel__header_input{
