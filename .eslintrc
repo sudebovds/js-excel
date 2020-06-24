@@ -18,7 +18,8 @@
         "import/prefer-default-export": "off",
         "import/no-unresolved": "off",
         "class-methods-use-this": "off",
-        "padded-blocks": "off"
+        "padded-blocks": "off",
+        "arrow-body-style": "off"
     },
     "extends": [
         "airbnb",
