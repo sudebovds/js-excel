@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 /* eslint-disable no-plusplus */
 const CHAR_CODES = {
     A: 65,
@@ -16,15 +17,21 @@ function createCell(content) {
     return `
         <div class="table__column">
             ${col}
+            <div class="col-resize" data-resize="col"></div>
         </div>
     `;
 } 
 
 function createRow(index, content){
+    const resize = index 
+            ? `<div class="row-resize" data-resize='row'></div>`
+            : '';
+
     return `
         <div class="table__row">
             <div class="table__row_info">
                 ${index != null ? index : ' '}
+                ${resize}
             </div>
             <div class="table__row_data">
                 ${content}
