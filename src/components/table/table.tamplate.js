@@ -15,7 +15,7 @@ function createCell(content) {
 
  function createCol(col){
     return `
-        <div class="table__column">
+        <div class="table__column" data-type="resizable">
             ${col}
             <div class="col-resize" data-resize="col"></div>
         </div>

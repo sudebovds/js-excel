@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+
 class Dom{
     constructor(selector){
         this.$el = typeof selector === 'string'
@@ -42,6 +43,15 @@ class Dom{
         }
 
         return this;
+    }
+
+    closest(selector){
+        // eslint-disable-next-line no-use-before-define
+        return $(this.$el.closest(selector));
+    }
+
+    getCoords(){
+        return this.$el.getBoundingClientRect();
     }
 }
 
