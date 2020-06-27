@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 /* eslint-disable quotes */
 import { ExcelComponent } from '@core/ExcelComponent';
 import { $ } from '@core/dom';
@@ -26,11 +27,18 @@ export class Table extends ExcelComponent{
             const $parent = $resizer.closest('[data-type="resizable"]'); // Good.
             const $coord = $parent.getCoords();
 
+            const $column = this.$root.findAll(`[data-col="${$parent.data.col}"]`);
+
             document.onmousemove = (e) => {
                 const delta = e.pageX - $coord.right;
                 const value = $coord.width + delta;
 
+                console.log('mousemove');
+
                 $parent.$el.style.width = `${value}px`;
+
+                // eslint-disable-next-line no-param-reassign
+                $column.forEach(el => el.style.width = `${value}px`);
             };
 
             document.onmouseup = () => {

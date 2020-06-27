@@ -7,15 +7,15 @@ const CHAR_CODES = {
 
 const ABC_LENGTH = CHAR_CODES.Z - CHAR_CODES.A;
 
-function createCell(content) {
+function createCell(content, col) {
     return `
-        <div class="table__cell" contenteditable spellcheck>${content}</div> 
+        <div class="table__cell" contenteditable spellcheck data-col="${col}">${content}</div> 
     `;
 } 
 
- function createCol(col){
+ function createCol(col, index){
     return `
-        <div class="table__column" data-type="resizable">
+        <div class="table__column" data-type="resizable" data-col="${index}">
             ${col}
             <div class="col-resize" data-resize="col"></div>
         </div>
