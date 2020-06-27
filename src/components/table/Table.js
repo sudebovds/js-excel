@@ -33,7 +33,7 @@ export class Table extends ExcelComponent{
                 const delta = e.pageX - $coord.right;
                 const value = $coord.width + delta;
 
-                console.log('mousemove');
+                console.log('mousemove'); // dont forget remove test output
 
                 $parent.$el.style.width = `${value}px`;
 
