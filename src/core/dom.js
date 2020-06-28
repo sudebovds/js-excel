@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-param-reassign */
 
 class Dom{
@@ -60,6 +61,14 @@ class Dom{
 
     findAll(selector){
         return this.$el.querySelectorAll(selector);
+    }
+
+    css(param = {}){
+        Object
+            .keys(param)
+            .forEach(key => {
+                this.$el.style[key] = param[key];
+            });
     }
 }
 

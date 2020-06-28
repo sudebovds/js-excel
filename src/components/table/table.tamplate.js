@@ -28,7 +28,7 @@ function createRow(index, content){
             : '';
 
     return `
-        <div class="table__row">
+        <div class="table__row" data-type="resizable">
             <div class="table__row_info">
                 ${index != null ? index : ' '}
                 ${resize}
