@@ -12,27 +12,51 @@
 
         min-height: 20px;
         height: $table-basic-height;
+        position: relative;
 
-        .table__row_info{
+        &_info{
             display: flex;
             justify-content: center;
             align-items: center;
             min-width: $info-cell-width;
             height: 100%;
+            position: relative;
 
             border: 1px solid $border-color;
             border-top: none;
 
             background: #f8f9fa;
+
+            .row-resize{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: 1000;
+
+                height: 4px;
+                width: 100%;
+
+                background: lightskyblue;
+
+                opacity: 0;
+
+                transition: opacity .3s ease;
+
+                &:hover{
+                    opacity: 1 !important;
+                    cursor: row-resize;
+                }
+            }
         }
 
-        .table__row_data{
+        &_data{
             display: flex;
 
             .table__column{
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                position: relative;
 
                 background: #f8f9fa;
 
@@ -43,6 +67,27 @@
                 border: 1px solid $border-color;
                 border-top: none;
                 border-left: none;
+
+                .col-resize{
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    z-index: 1000;
+
+                    width: 4px;
+                    background: lightskyblue;
+
+                    opacity: 0;
+
+                    cursor: col-resize;
+
+                    transition: opacity .3s ease-out;
+
+                    &:hover{
+                        opacity: 1 !important;
+                    }
+                }
             }
 
             .table__cell{
