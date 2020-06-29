@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable no-undef */
 /* eslint-disable no-param-reassign */
 
@@ -59,6 +60,10 @@ class Dom{
         return this.$el.dataset;
     }
 
+    find(selector){
+        return $(this.$el.querySelector(selector));
+    }
+
     findAll(selector){
         return this.$el.querySelectorAll(selector);
     }
@@ -69,6 +74,14 @@ class Dom{
             .forEach(key => {
                 this.$el.style[key] = param[key];
             });
+    }
+
+    addClass(className){
+        this.$el.classList.add(className);
+    }
+
+    removeClass(className){
+        this.$el.classList.remove(className);
     }
 }
 

@@ -50,8 +50,7 @@ export function resizeHandler($root, event){
         $resizer.css({
             opacity: 0,
             bottom: 0,
-            right: 0,
-            left: 0
+            right: 0
         });
     };
 }
