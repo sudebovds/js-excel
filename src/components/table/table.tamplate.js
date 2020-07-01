@@ -16,6 +16,7 @@ function createCell(row){
                 contenteditable 
                 spellcheck 
                 data-col="${col}"
+                data-type="cell"
                 data-id="${row}:${col}"
             >${content}</div> 
         `;

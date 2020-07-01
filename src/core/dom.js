@@ -68,6 +68,19 @@ class Dom{
         return this.$el.querySelectorAll(selector);
     }
 
+    id(parse){
+        if (parse){
+            // eslint-disable-next-line no-unused-vars
+            const parsed = this.id().split(':');
+       
+            return {
+                row: +parsed[0],
+                col: +parsed[1]
+            };  
+        }
+        return this.data.id;
+    }
+
     css(param = {}){
         Object
             .keys(param)
