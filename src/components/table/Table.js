@@ -1,3 +1,6 @@
+/* eslint-disable default-case */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-plusplus */
 /* eslint-disable no-param-reassign */
 /* eslint-disable camelcase */
 /* eslint-disable brace-style */
@@ -8,7 +11,12 @@ import { ExcelComponent } from '@core/ExcelComponent';
 import { $ } from '@core/dom';
 import { createTable } from './table.tamplate';
 import { resizeHandler } from './table.resize';
-import { shouldResize, isCell, matrix } from './table.functions';
+import { 
+        shouldResize, 
+        isCell, 
+        matrix, 
+        nextSelector 
+    } from './table.functions';
 import { TableSelection } from './TableSelection';
 
 export class Table extends ExcelComponent{
@@ -16,7 +24,7 @@ export class Table extends ExcelComponent{
 
     constructor($root){
         super($root, {
-            listeners: ['mousedown']
+            listeners: ['mousedown', 'keydown']
         });
     }
 
@@ -52,6 +60,28 @@ export class Table extends ExcelComponent{
             else {
                 this.selection.select($target);
             }
+        }
+    }
+
+    onKeydown(event){
+        const keys = [
+                'Enter', 
+                'Tab', 
+                'ArrowRight', 
+                'ArrowLeft', 
+                'ArrowUp', 
+                'ArrowDown'
+            ];
+
+        const pushedKey = event.key;
+
+        if (keys.includes(pushedKey) && !event.shiftKey){
+            event.preventDefault();
+
+            const id = this.selection.current.id(true);
+            const $next = this.$root.find(nextSelector(pushedKey, id));
+
+            this.selection.select($next);
         }
     }
 }
