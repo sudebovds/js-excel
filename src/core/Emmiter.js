@@ -15,7 +15,7 @@ export class Emmiter{
         return true;
     }
 
-    subscrib(eventName, callback){
+    subscribe(eventName, callback){
         this.listeners[eventName] = this.listeners[eventName] || [];
         this.listeners[eventName].push(callback);
 

@@ -8,6 +8,7 @@ export class ExcelComponent extends DomListener{
 
         this.name = options.name || '';
         this.emmiter = options.emmiter;
+        this.unsubscribers = [];
 
         this.prepare();
     }
@@ -20,6 +21,20 @@ export class ExcelComponent extends DomListener{
         return '';
     }
 
+    // fasad pattern realisation
+
+    $emit(event, ...args){
+        this.emmiter.trigger(event, ...args);
+    }
+
+    // Subscribe to current event
+
+    $on(event, callback){
+        const unsub = this.emmiter.subscribe(event, callback);
+
+        this.unsubscribers.push(unsub);
+    }
+
     // add listeners after page render
 
     init(){
@@ -30,5 +45,7 @@ export class ExcelComponent extends DomListener{
 
     destroy(){
         this.removeDOMListeners();
+
+        this.unsubscribers.forEach(unsub => unsub());
     }
 }

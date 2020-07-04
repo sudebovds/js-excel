@@ -42,6 +42,11 @@ export class Table extends ExcelComponent{
 
     init(){
         super.init();
+
+        this.$on('it is working', text => {
+            this.selection.current.text(text);
+            console.log(text);
+        });
     } 
 
     onMousedown(event){
