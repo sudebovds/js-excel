@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable no-undef */
 /* eslint-disable no-param-reassign */
 
@@ -18,6 +19,17 @@ class Dom{
         return this.$el.outerHTML.trim();
     }
 
+    text(text){
+        if (typeof text === 'string'){
+            this.$el.textContent = text;
+            return this;
+        }
+        if (this.$el.tagName.toLowerCase() === 'input'){
+            return this.$el.value.trim();
+        }
+        return this.$el.textContent.trim();
+    }
+
     clear(){
         this.html('');
 
@@ -30,6 +42,12 @@ class Dom{
 
     off(eventType, callback){
         this.$el.removeEventListener(eventType, callback);
+    }
+
+    focus(){
+        this.$el.focus();
+
+        return this;
     }
 
     append(node){
@@ -59,8 +77,25 @@ class Dom{
         return this.$el.dataset;
     }
 
+    find(selector){
+        return $(this.$el.querySelector(selector));
+    }
+
     findAll(selector){
         return this.$el.querySelectorAll(selector);
+    }
+
+    id(parse){
+        if (parse){
+            // eslint-disable-next-line no-unused-vars
+            const parsed = this.id().split(':');
+       
+            return {
+                row: +parsed[0],
+                col: +parsed[1]
+            };  
+        }
+        return this.data.id;
     }
 
     css(param = {}){
@@ -69,6 +104,16 @@ class Dom{
             .forEach(key => {
                 this.$el.style[key] = param[key];
             });
+    }
+
+    addClass(className){
+        this.$el.classList.add(className);
+
+        return this;
+    }
+
+    removeClass(className){
+        this.$el.classList.remove(className);
     }
 }
 

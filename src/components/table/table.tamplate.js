@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 /* eslint-disable quotes */
 /* eslint-disable no-plusplus */
 const CHAR_CODES = {
@@ -7,11 +8,20 @@ const CHAR_CODES = {
 
 const ABC_LENGTH = CHAR_CODES.Z - CHAR_CODES.A;
 
-function createCell(content, col) {
-    return `
-        <div class="table__cell" contenteditable spellcheck data-col="${col}">${content}</div> 
-    `;
-} 
+function createCell(row){
+    return function (content, col) {
+        return `
+            <div 
+                class="table__cell"  
+                contenteditable 
+                spellcheck 
+                data-col="${col}"
+                data-type="cell"
+                data-id="${row}:${col}"
+            >${content}</div> 
+        `;
+    };
+}
 
  function createCol(col, index){
     return `
@@ -55,13 +65,13 @@ export function createTable(rowsCount = 15){
 
     rows.push(createRow(null, cols));
 
-    for (let i = 0; i < rowsCount; i++){
+    for (let row = 0; row < rowsCount; row++){
         const cells = new Array(ABC_LENGTH + 1)
         .fill('')
-        .map(createCell)
+        .map(createCell(row))
         .join('');
 
-        rows.push(createRow(i + 1, cells));
+        rows.push(createRow(row + 1, cells));
     }
 
     return `${rows.join('')}`;

@@ -19,7 +19,8 @@
         "import/no-unresolved": "off",
         "class-methods-use-this": "off",
         "padded-blocks": "off",
-        "arrow-body-style": "off"
+        "arrow-body-style": "off",
+        "no-param-reassign": "off"
     },
     "extends": [
         "airbnb",
