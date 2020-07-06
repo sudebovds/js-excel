@@ -4,9 +4,14 @@ import { Formula } from '@/components/formula/Formula';
 import { Excel } from '@/components/excel/Excel';
 import { Table } from '@/components/table/Table';
 import './scss/index.scss';
+import { createStore } from '@core/createStore';
+import { rootReducer } from './store/rootReducer';
+
+const store = createStore(rootReducer);
 
 const excel = new Excel('#app', {
-    components: [Header, Toolbar, Formula, Table]
+    components: [Header, Toolbar, Formula, Table],
+    store
 });
 
 excel.render();
