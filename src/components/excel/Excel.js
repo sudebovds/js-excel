@@ -5,13 +5,15 @@ export class Excel{
     constructor(selector, options){
         this.$el = $(selector);
         this.components = options.components || [];
+        this.store = options.store;
         this.emmiter = new Emmiter();
     }
 
     getRoot(){
         const $root = $.create('div', 'excel');
         const componetOptions = {
-            emmiter: this.emmiter
+            emmiter: this.emmiter,
+            store: this.store
         };
 
        this.components = this.components.map(Component => {
