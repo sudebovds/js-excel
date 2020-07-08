@@ -40,11 +40,12 @@ export class ExcelComponent extends DomListener{
     // work with store
 
     $dispatch(action){
-        this.storeSub = this.store.dispatch(action);
+        this.store.dispatch(action);
+            
     }
 
     $subscribe(fn){
-        this.store.subscribe(fn);
+        this.storeSub = this.store.subscribe(fn);
     }
 
     // add listeners after page render
