@@ -16,8 +16,6 @@ export class Excel{
             store: this.store
         };
 
-        console.log(componetOptions.store);
-
        this.components = this.components.map(Component => {
             const $el = $.create('div', Component.className);
 
