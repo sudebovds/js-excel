@@ -9,6 +9,7 @@
 
 import { ExcelComponent } from '@core/ExcelComponent';
 import { $ } from '@core/dom';
+import * as action from '@store/actions';
 import { createTable } from './table.tamplate';
 import { resizeHandler } from './table.resize';
 import { 
@@ -53,9 +54,9 @@ export class Table extends ExcelComponent{
             this.selection.current.focus();
         });
 
-        this.$subscribe(state => {
+        /* this.$subscribe(state => {
             console.log('Table state:', state);
-        });
+        }); */
     } 
 
     selectCell($cell){
@@ -68,7 +69,7 @@ export class Table extends ExcelComponent{
     async resizeTable(event){
         try {
             const data = await resizeHandler(this.$root, event);
-            this.$dispatch({ type: 'TABLE_RESIZE', data }); 
+            this.$dispatch(action.tableResize(data)); 
         } catch (error) {
             throw new Error('Ups, something iswrong!', error.message);
         }

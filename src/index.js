@@ -4,11 +4,15 @@ import { Formula } from '@/components/formula/Formula';
 import { Excel } from '@/components/excel/Excel';
 import { Table } from '@/components/table/Table';
 import './scss/index.scss';
+import { storage } from '@core/util';
 import { createStore } from '@core/createStore';
 import { rootReducer } from './store/rootReducer';
 
-const store = createStore(rootReducer, {
-    colState: {}
+const store = createStore(rootReducer, storage('excel-state'));
+
+store.subscribe(state => {
+    console.log('Application state: ', state);
+    storage('excel-state', state);
 });
 
 const excel = new Excel('#app', {
