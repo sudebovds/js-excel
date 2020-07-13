@@ -33,7 +33,7 @@ export class Table extends ExcelComponent{
 
     toHtml(){
         return ` 
-            ${createTable(34)}
+            ${createTable(34, this.store.getState())}
         `;
     }
     
