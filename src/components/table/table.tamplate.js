@@ -7,16 +7,21 @@ const CHAR_CODES = {
 };
 
 const DEFAULT_WIDTH = 120;
+const DEFAULT_HEIGHT = 24;
 
 function getWidth(state, index){
     return `${state[index] || DEFAULT_WIDTH}px`;
+}
+
+function getHeight(state, index){
+    return `${state[index] || DEFAULT_HEIGHT}px`;
 }
 
 const ABC_LENGTH = CHAR_CODES.Z - CHAR_CODES.A;
 
 function createCell(state, row){
     return function (content, col) {
-        const width = getWidth(state.colState, col);
+        const width = getWidth(state, col);
 
         return `
             <div 
@@ -46,14 +51,19 @@ function createCell(state, row){
     `;
 } 
 
-function createRow(index, content){
+function createRow(index, content, state){
+    const height = getHeight(state, index);
     const resize = index 
-            ? `<div class="row-resize" data-resize='row'></div>`
+            ? `<div 
+                    class="row-resize" 
+                    data-resize='row'
+                    >
+                    </div>`
             : '';
 
     return `
-        <div class="table__row" data-type="resizable">
-            <div class="table__row_info">
+        <div class="table__row" data-type="resizable" data-row="${index}" style="height: ${height}">
+            <div class="table__row_info" >
                 ${index != null ? index : ' '}
                 ${resize}
             </div>
@@ -71,7 +81,7 @@ function toChar(_, index){
 function withWidthFrom(state){
     return function (col, index){
         return {
-            col, index, width: getWidth(state.colState, index)
+            col, index, width: getWidth(state, index)
         };
     };
 }
@@ -88,15 +98,15 @@ export function createTable(rowsCount = 15, state = {}){
         .map(createCol)
         .join('');
 
-    rows.push(createRow(null, cols));
+    rows.push(createRow(null, cols, {}));
 
     for (let row = 0; row < rowsCount; row++){
         const cells = new Array(ABC_LENGTH + 1)
         .fill('')
-        .map(createCell(state, row))
+        .map(createCell(state.colState, row))
         .join('');
 
-        rows.push(createRow(row + 1, cells));
+        rows.push(createRow(row + 1, cells, state.rowState));
     }
 
     return `${rows.join('')}`;
