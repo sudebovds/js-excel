@@ -20,8 +20,10 @@ function getHeight(state, index){
 const ABC_LENGTH = CHAR_CODES.Z - CHAR_CODES.A;
 
 function createCell(state, row){
-    return function (content, col) {
-        const width = getWidth(state, col);
+    return function (_, col) {
+        const id = `${row}:${col}`;
+        const width = getWidth(state.colState, col);
+        const data = state.dataState[id];
 
         return `
             <div 
@@ -30,9 +32,9 @@ function createCell(state, row){
                 spellcheck 
                 data-col="${col}"
                 data-type="cell"
-                data-id="${row}:${col}"
+                data-id="${id}"
                 style="width: ${width}"
-            >${content}</div> 
+            >${data || ''}</div> 
         `;
     };
 }
@@ -103,7 +105,7 @@ export function createTable(rowsCount = 15, state = {}){
     for (let row = 0; row < rowsCount; row++){
         const cells = new Array(ABC_LENGTH + 1)
         .fill('')
-        .map(createCell(state.colState, row))
+        .map(createCell(state, row))
         .join('');
 
         rows.push(createRow(row + 1, cells, state.rowState));
