@@ -96,7 +96,7 @@ export function createTable(rowsCount = 15, state = {}){
     const cols = new Array(ABC_LENGTH + 1)
         .fill('')
         .map(toChar)
-        .map(withWidthFrom(state))
+        .map(withWidthFrom(state.colState))
         .map(createCol)
         .join('');
 
